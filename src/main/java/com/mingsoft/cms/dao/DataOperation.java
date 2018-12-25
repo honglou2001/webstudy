@@ -48,6 +48,13 @@ public class DataOperation {
         queryData();
     }
 
+    public static String isNullConvert(Object obj){
+
+        if (obj!=null){
+            return obj.toString();
+        }
+        return "";
+    }
     public static List<CoinArticleBean> queryData() {
         List<CoinArticleBean> lists = new ArrayList<>();
 
