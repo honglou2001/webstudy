@@ -68,10 +68,27 @@ public class DataOperation {
 
         try {
 
-            String sql = "SELECT `fid`, `fsymbol`, `ftsid`, `ftimestamp`, `fopen`, " +
-                    "`fclose`, `fprice`, `fmax`, `flow`, `faddtime`, `ffrom`," +
-                    " `fcount`, `fversion`, `fvol`, `famount`, `fmarketcap`, " +
-                    " `fupdatetime` FROM `dbmcmsopen`.`currence_tickers` order by Faddtime desc  LIMIT 0, ?";
+            String sql = "SELECT   fid," +
+                    "  fsymbol," +
+                    "  ftsid," +
+                    "  ftimestamp," +
+                    "  fopen," +
+                    "  fclose," +
+                    "  fprice," +
+                    "  fmax," +
+                    "  flow," +
+                    "  faddtime," +
+                    "  ffrom," +
+                    "  fcount," +
+                    "  fversion," +
+                    "  fvol," +
+                    "  famount," +
+                    "  fmarketcap," +
+                    "  fupdatetime FROM" +
+                    "  dbmcmsopen.currence_tickers a" +
+                    "  JOIN (SELECT fsymbol AS bsymbol,MAX(faddtime) baddtime FROM dbmcmsopen.currence_tickers WHERE faddtime >= DATE_ADD(NOW(),INTERVAL -20 DAY) GROUP BY fsymbol) b " +
+                    "  ON a.fsymbol=b.bsymbol AND a.faddtime=b.baddtime" +
+                    "  WHERE faddtime >= DATE_ADD(NOW(), INTERVAL -20 DAY)   LIMIT 0,?";
 
 
             stmt = conn.prepareStatement(sql);

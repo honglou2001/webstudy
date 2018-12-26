@@ -61,6 +61,7 @@ nav { float: left; height: 50px; line-height: 50px; text-align: center; }
 /*article*/
 
 /*lbox*/
+.fullbox { width: 100%; float: center; overflow: hidden }
 .lbox { width: 75%; float: left; overflow: hidden }
 /*banner*/
 .banbox { width: 68.5%; overflow: hidden; float: left; border-radius: 3px; margin-bottom: 20px }
