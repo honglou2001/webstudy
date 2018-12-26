@@ -2,6 +2,9 @@
 <%@page import="com.mingsoft.cms.bean.CoinArticleBean" %>
 <%@ page import="java.util.List" %>
 
+<link href="css/base.css" rel="stylesheet">
+<link href="css/m.css" rel="stylesheet">
+
 <!-- JSP指令 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" isThreadSafe="false" errorPage="" %>

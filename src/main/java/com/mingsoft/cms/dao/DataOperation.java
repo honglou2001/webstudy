@@ -71,7 +71,7 @@ public class DataOperation {
             String sql = "SELECT `fid`, `fsymbol`, `ftsid`, `ftimestamp`, `fopen`, " +
                     "`fclose`, `fprice`, `fmax`, `flow`, `faddtime`, `ffrom`," +
                     " `fcount`, `fversion`, `fvol`, `famount`, `fmarketcap`, " +
-                    " `fupdatetime` FROM `dbmcmsopen`.`currence_tickers` LIMIT 0, ?";
+                    " `fupdatetime` FROM `dbmcmsopen`.`currence_tickers` order by Faddtime desc  LIMIT 0, ?";
 
 
             stmt = conn.prepareStatement(sql);
