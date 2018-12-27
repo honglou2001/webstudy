@@ -86,6 +86,7 @@
             <div class="table-column"></div>
             <div class="table-column"></div>
             <div class="table-column"></div>
+            <div class="table-column"></div>
         </div>
         <div class="table-header-group">
             <ul class="table-row">
@@ -97,6 +98,7 @@
                 <li class="table-cell">Close</li>
                 <li class="table-cell">Volume</li>
                 <li class="table-cell">Market Cap</li>
+                <li class="table-cell">From</li>
             </ul>
         </div>
         <div class="table-footer-group">
@@ -109,6 +111,7 @@
                 <li class="table-cell">Close</li>
                 <li class="table-cell">Volume</li>
                 <li class="table-cell">Market Cap</li>
+                <li class="table-cell">From</li>
             </ul>
         </div>
         <div class="table-row-group">
@@ -123,6 +126,7 @@
                 <li class="table-cell"><% out.write(list.get(i).getFclose().toString()); %></li>
                 <li class="table-cell"><% out.write(DataOperation.isNullConvert(list.get(i).getFvol())); %></li>
                 <li class="table-cell"><% out.write(DataOperation.isNullConvert(list.get(i).getFmarketcap())); %></li>
+                <li class="table-cell"><% out.write(list.get(i).getFfrom()); %></li>
             </ul>
             <%}%>
         </div>

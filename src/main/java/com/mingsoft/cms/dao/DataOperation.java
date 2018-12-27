@@ -19,10 +19,10 @@ public class DataOperation {
     public static final java.util.logging.Logger LOG =
             java.util.logging.Logger.getLogger(DataOperation.class.getName());
 
-    private static final String connUrl = "jdbc:mysql://localhost:3306/dbmcmsopen?useUnicode=true&characterEncoding=" +
+    private static final String connUrl = "jdbc:mysql://localhost:20826/dbmcmsopen?useUnicode=true&characterEncoding=" +
             "utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&allowMultiQueries=true";
     private static final String connDriver = "com.mysql.jdbc.Driver";
-    private static String connUser = "root";
+    private static String connUser = "dbusr";
     private static String connPwd = "Long!@#327";
 
 
@@ -48,13 +48,14 @@ public class DataOperation {
         queryData();
     }
 
-    public static String isNullConvert(Object obj){
+    public static String isNullConvert(Object obj) {
 
-        if (obj!=null){
+        if (obj != null) {
             return obj.toString();
         }
         return "";
     }
+
     public static List<CoinArticleBean> queryData() {
         List<CoinArticleBean> lists = new ArrayList<>();
 
@@ -68,27 +69,14 @@ public class DataOperation {
 
         try {
 
-            String sql = "SELECT   fid," +
-                    "  fsymbol," +
-                    "  ftsid," +
-                    "  ftimestamp," +
-                    "  fopen," +
-                    "  fclose," +
-                    "  fprice," +
-                    "  fmax," +
-                    "  flow," +
-                    "  faddtime," +
-                    "  ffrom," +
-                    "  fcount," +
-                    "  fversion," +
-                    "  fvol," +
-                    "  famount," +
-                    "  fmarketcap," +
-                    "  fupdatetime FROM" +
-                    "  dbmcmsopen.currence_tickers a" +
-                    "  JOIN (SELECT fsymbol AS bsymbol,MAX(faddtime) baddtime FROM dbmcmsopen.currence_tickers WHERE faddtime >= DATE_ADD(NOW(),INTERVAL -20 DAY) GROUP BY fsymbol) b " +
-                    "  ON a.fsymbol=b.bsymbol AND a.faddtime=b.baddtime" +
-                    "  WHERE faddtime >= DATE_ADD(NOW(), INTERVAL -20 DAY)   LIMIT 0,?";
+            String sql = " SELECT   fid,  fsymbol,  ftsid,  ftimestamp,  fopen,  fclose,  " +
+                    " fprice,  fmax,  flow,  faddtime,  ffrom,  fcount,  \n" +
+                    " fversion,  fvol,  famount,  fmarketcap,  fupdatetime FROM " +
+                    " dbmcmsopen.currence_tickers a  JOIN (SELECT fsymbol AS bsymbol,MAX(fid) \n" +
+                    " bfid FROM dbmcmsopen.currence_tickers WHERE " +
+                    " faddtime >= DATE_ADD(NOW(),INTERVAL -20 DAY) GROUP BY fsymbol) b   \n" +
+                    " ON a.fsymbol=b.bsymbol " +
+                    " AND a.fid=b.bfid  WHERE faddtime >= DATE_ADD(NOW(), INTERVAL -20 DAY)   LIMIT 0,?";
 
 
             stmt = conn.prepareStatement(sql);
